@@ -7,3 +7,4 @@ mix ecto.create
 mix ecto.migrate
 mix phx.gen.schema Plants.Sunlight sunlight type:string
 mix phx.gen.schema Plants.Sunlight sunlight type:string description:string
+mix phx.gen.html Plants Plant plants name:string min_temp_f:integer max_temp_f:integer days_germinate:integer days_transplant:integer days_first_harvest:integer days_last_harvest:integer zone:integer height_inches:integer spread_inches:integer sunlight_id:references:sunlight min_acidity_ph:integer max_acidity_ph:integer

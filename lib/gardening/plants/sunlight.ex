@@ -5,6 +5,7 @@ defmodule Gardening.Plants.Sunlight do
   schema "sunlight" do
     field :description, :string
     field :type, :string
+    has_many :plants, Gardening.Plants.Plant
 
     timestamps()
   end

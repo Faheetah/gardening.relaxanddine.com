@@ -1,0 +1,48 @@
+<h1>Listing Plants</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Min temp f</th>
+      <th>Max temp f</th>
+      <th>Days germinate</th>
+      <th>Days transplant</th>
+      <th>Days first harvest</th>
+      <th>Days last harvest</th>
+      <th>Zone</th>
+      <th>Height inches</th>
+      <th>Spread inches</th>
+      <th>Min acidity ph</th>
+      <th>Max acidity ph</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for plant <- @plants do %>
+    <tr>
+      <td><%= plant.name %></td>
+      <td><%= plant.min_temp_f %></td>
+      <td><%= plant.max_temp_f %></td>
+      <td><%= plant.days_germinate %></td>
+      <td><%= plant.days_transplant %></td>
+      <td><%= plant.days_first_harvest %></td>
+      <td><%= plant.days_last_harvest %></td>
+      <td><%= plant.zone %></td>
+      <td><%= plant.height_inches %></td>
+      <td><%= plant.spread_inches %></td>
+      <td><%= plant.min_acidity_ph %></td>
+      <td><%= plant.max_acidity_ph %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.plant_path(@conn, :show, plant) %></span>
+        <span><%= link "Edit", to: Routes.plant_path(@conn, :edit, plant) %></span>
+        <span><%= link "Delete", to: Routes.plant_path(@conn, :delete, plant), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Plant", to: Routes.plant_path(@conn, :new) %></span>

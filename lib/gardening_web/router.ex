@@ -20,6 +20,7 @@ defmodule GardeningWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources "/plants", PlantController
   end
 
   # Other scopes may use custom stacks.

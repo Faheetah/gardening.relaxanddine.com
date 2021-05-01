@@ -1,0 +1,68 @@
+<h1>Show Plant</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @plant.name %>
+  </li>
+
+  <li>
+    <strong>Min temp f:</strong>
+    <%= @plant.min_temp_f %>
+  </li>
+
+  <li>
+    <strong>Max temp f:</strong>
+    <%= @plant.max_temp_f %>
+  </li>
+
+  <li>
+    <strong>Days germinate:</strong>
+    <%= @plant.days_germinate %>
+  </li>
+
+  <li>
+    <strong>Days transplant:</strong>
+    <%= @plant.days_transplant %>
+  </li>
+
+  <li>
+    <strong>Days first harvest:</strong>
+    <%= @plant.days_first_harvest %>
+  </li>
+
+  <li>
+    <strong>Days last harvest:</strong>
+    <%= @plant.days_last_harvest %>
+  </li>
+
+  <li>
+    <strong>Zone:</strong>
+    <%= @plant.zone %>
+  </li>
+
+  <li>
+    <strong>Height inches:</strong>
+    <%= @plant.height_inches %>
+  </li>
+
+  <li>
+    <strong>Spread inches:</strong>
+    <%= @plant.spread_inches %>
+  </li>
+
+  <li>
+    <strong>Min acidity ph:</strong>
+    <%= @plant.min_acidity_ph %>
+  </li>
+
+  <li>
+    <strong>Max acidity ph:</strong>
+    <%= @plant.max_acidity_ph %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.plant_path(@conn, :edit, @plant) %></span>
+<span><%= link "Back", to: Routes.plant_path(@conn, :index) %></span>
