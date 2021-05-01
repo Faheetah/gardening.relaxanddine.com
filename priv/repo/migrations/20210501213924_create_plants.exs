@@ -16,6 +16,7 @@ defmodule Gardening.Repo.Migrations.CreatePlants do
       add :min_acidity_ph, :integer
       add :max_acidity_ph, :integer
       add :sunlight_id, references(:sunlight, on_delete: :nothing)
+      add :parent_id, references(:plants, on_delete: :nothing)
 
       timestamps()
     end

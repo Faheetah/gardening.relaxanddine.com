@@ -16,6 +16,8 @@ defmodule Gardening.Plants.Plant do
     field :spread_inches, :integer
     field :zone, :integer
     belongs_to :sunlight, Gardening.Plants.Sunlight
+    belongs_to :parent, Gardening.Plants.Plant
+    has_many :children, Gardening.Plants.Plant, foreign_key: :parent_id
 
     timestamps()
   end
@@ -36,7 +38,8 @@ defmodule Gardening.Plants.Plant do
       :spread_inches,
       :min_acidity_ph,
       :max_acidity_ph,
-      :sunlight_id
+      :sunlight_id,
+      :parent_id,
     ])
 
     |> validate_required([:name])
