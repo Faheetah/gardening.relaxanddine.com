@@ -1,7 +1,9 @@
 mix phx.new gardening --no-gettext
+git init
 mix do deps.get, deps.compile
 mix phx.gen.auth Accounts User users
 mix deps.get
 mix ecto.create
 mix ecto.migrate
-git init
+mix phx.gen.schema Plants.Sunlight sunlight type:string
+mix phx.gen.schema Plants.Sunlight sunlight type:string description:string
