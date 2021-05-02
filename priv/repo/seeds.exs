@@ -21,3 +21,11 @@
   |> Gardening.Plants.Sunlight.changeset(attrs)
   |> Gardening.Repo.insert!()
 end)
+
+password = :crypto.strong_rand_bytes(16)
+|> Base.encode64
+|> binary_part(0, 16)
+
+Gardening.Accounts.register_user(%{email: "admin@localhost", password: password})
+
+IO.puts "Initial account: admin@localhost : #{password}"
