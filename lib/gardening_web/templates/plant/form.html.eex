@@ -53,6 +53,9 @@
   <%= number_input f, :max_acidity_ph %>
   <%= error_tag f, :max_acidity_ph %>
 
+  <%= label f, :sunlight %>
+  <%= select f, :sunlight_id, @sunlight %>
+  <% error_tag f, :sunlight %>
   <div>
     <%= submit "Save" %>
   </div>

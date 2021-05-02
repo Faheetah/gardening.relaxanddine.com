@@ -11,7 +11,11 @@ defmodule GardeningWeb.PlantController do
 
   def new(conn, _params) do
     changeset = Plants.change_plant(%Plant{})
-    render(conn, "new.html", changeset: changeset)
+
+    sunlight = Plants.list_sunlight()
+    |> Enum.map(fn s -> {s.type, s.id} end)
+
+    render(conn, "new.html", changeset: changeset, sunlight: sunlight)
   end
 
   def create(conn, %{"plant" => plant_params}) do
@@ -28,16 +32,24 @@ defmodule GardeningWeb.PlantController do
 
   def show(conn, %{"id" => id}) do
     plant = Plants.get_plant!(id)
+    |> IO.inspect
     render(conn, "show.html", plant: plant)
   end
 
   def edit(conn, %{"id" => id}) do
     plant = Plants.get_plant!(id)
     changeset = Plants.change_plant(plant)
-    render(conn, "edit.html", plant: plant, changeset: changeset)
+
+    sunlight = Plants.list_sunlight()
+    |> Enum.map(fn s -> {s.type, s.id} end)
+
+    sunlight = [{"", nil} | sunlight]
+
+    render(conn, "edit.html", plant: plant, changeset: changeset, sunlight: sunlight)
   end
 
   def update(conn, %{"id" => id, "plant" => plant_params}) do
+    IO.inspect plant_params
     plant = Plants.get_plant!(id)
 
     case Plants.update_plant(plant, plant_params) do

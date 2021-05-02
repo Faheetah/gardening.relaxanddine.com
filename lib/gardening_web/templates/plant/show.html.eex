@@ -7,6 +7,13 @@
     <%= @plant.name %>
   </li>
 
+  <%= if @plant.parent != nil do %>
+  <li>
+    <strong>Parent:</strong>
+    <%= link @plant.parent.name, to: Routes.plant_path(@conn, :show, @plant.parent) %>
+  </li>
+  <% end %>
+
   <li>
     <strong>Min temp f:</strong>
     <%= @plant.min_temp_f %>
@@ -61,6 +68,27 @@
     <strong>Max acidity ph:</strong>
     <%= @plant.max_acidity_ph %>
   </li>
+
+  <li>
+    <strong>Sunlight:</strong>
+    <%= if @plant.sunlight != nil do %>
+    <%= @plant.sunlight.type %>
+    <% end %>
+  </li>
+
+  <%= if @plant.children != nil do %>
+  <li>
+    <strong>Varieties:</strong>
+    <ul>
+    <%= for child <- @plant.children do %>
+      <li>
+        <%= link child.name, to: Routes.plant_path(@conn, :show, child) %>
+      </li>
+    <% end %>
+    </ul>
+  </li>
+  <% end %>
+
 
 </ul>
 

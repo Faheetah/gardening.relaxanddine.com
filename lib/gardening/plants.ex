@@ -7,6 +7,20 @@ defmodule Gardening.Plants do
   alias Gardening.Repo
 
   alias Gardening.Plants.Plant
+  alias Gardening.Plants.Sunlight
+
+  @doc """
+  Returns the list of sunlight.
+
+  ## Examples
+
+      iex> list_sunlight()
+      [%Sunlight{}, ...]
+
+  """
+  def list_sunlight do
+    Repo.all(Sunlight)
+  end
 
   @doc """
   Returns the list of plants.
@@ -35,7 +49,10 @@ defmodule Gardening.Plants do
       ** (Ecto.NoResultsError)
 
   """
-  def get_plant!(id), do: Repo.get!(Plant, id)
+  def get_plant!(id) do
+    Repo.get!(Plant, id)
+    |> Repo.preload([:sunlight, :parent, :children])
+  end
 
   @doc """
   Creates a plant.
