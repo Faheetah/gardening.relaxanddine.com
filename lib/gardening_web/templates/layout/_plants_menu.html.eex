@@ -1,0 +1,3 @@
+<ul>
+  <li><%= link "Plants", to: Routes.plant_path(@conn, :index) %></li>
+</ul>

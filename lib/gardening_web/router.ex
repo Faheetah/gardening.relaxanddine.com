@@ -19,7 +19,7 @@ defmodule GardeningWeb.Router do
   scope "/", GardeningWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", PlantController, :index
     resources "/plants", PlantController
   end
 

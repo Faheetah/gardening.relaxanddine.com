@@ -32,7 +32,6 @@ defmodule GardeningWeb.PlantController do
 
   def show(conn, %{"id" => id}) do
     plant = Plants.get_plant!(id)
-    |> IO.inspect
     render(conn, "show.html", plant: plant)
   end
 
@@ -49,7 +48,6 @@ defmodule GardeningWeb.PlantController do
   end
 
   def update(conn, %{"id" => id, "plant" => plant_params}) do
-    IO.inspect plant_params
     plant = Plants.get_plant!(id)
 
     case Plants.update_plant(plant, plant_params) do
