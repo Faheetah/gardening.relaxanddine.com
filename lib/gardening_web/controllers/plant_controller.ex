@@ -56,8 +56,18 @@ defmodule GardeningWeb.PlantController do
     parent = Plants.get_plant_by_name(plant_params["parent"])
     plant = Plants.get_plant!(id)
     plant_params =
-      plant_params
-      |> Map.put("parent_id", parent.id)
+      case parent do
+        nil ->
+          plant_params
+          |> Map.put("parent_id", nil)
+        "" ->
+          plant_params
+          |> Map.put("parent_id", nil)
+        _ ->
+          plant_params
+          |> Map.put("parent_id", parent.id)
+      end
+      |> IO.inspect
 
     case Plants.update_plant(plant, plant_params) do
       {:ok, plant} ->

@@ -43,5 +43,11 @@ defmodule Gardening.Plants.Plant do
     ])
 
     |> validate_required([:name])
+    |> maybe_inflex_name(attrs)
   end
+
+  def maybe_inflex_name(plant, %{"name" => name}) do
+    put_change(plant, :name, Inflex.singularize(name))
+  end
+  def maybe_inflex_name(plant, _), do: plant
 end
