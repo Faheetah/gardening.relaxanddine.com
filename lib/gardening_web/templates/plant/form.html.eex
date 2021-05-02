@@ -9,6 +9,10 @@
   <%= text_input f, :name %>
   <%= error_tag f, :name %>
 
+  <%= label f, "Parent" %>
+  <%= text_input f, :parent, value: @parent %>
+  <%= error_tag f, :parent %>
+
   <%= label f, :min_temp_f %>
   <%= number_input f, :min_temp_f %>
   <%= error_tag f, :min_temp_f %>

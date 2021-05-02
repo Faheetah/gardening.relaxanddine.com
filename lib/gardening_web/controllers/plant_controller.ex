@@ -15,7 +15,7 @@ defmodule GardeningWeb.PlantController do
     sunlight = Plants.list_sunlight()
     |> Enum.map(fn s -> {s.type, s.id} end)
 
-    render(conn, "new.html", changeset: changeset, sunlight: sunlight)
+    render(conn, "new.html", changeset: changeset, parent: nil, sunlight: sunlight)
   end
 
   def create(conn, %{"plant" => plant_params}) do
@@ -44,11 +44,20 @@ defmodule GardeningWeb.PlantController do
 
     sunlight = [{"", nil} | sunlight]
 
-    render(conn, "edit.html", plant: plant, changeset: changeset, sunlight: sunlight)
+    parent = case plant.parent do
+      nil -> ""
+      p -> p.name
+    end
+
+    render(conn, "edit.html", plant: plant, changeset: changeset, parent: parent, sunlight: sunlight)
   end
 
   def update(conn, %{"id" => id, "plant" => plant_params}) do
+    parent = Plants.get_plant_by_name(plant_params["parent"])
     plant = Plants.get_plant!(id)
+    plant_params =
+      plant_params
+      |> Map.put("parent_id", parent.id)
 
     case Plants.update_plant(plant, plant_params) do
       {:ok, plant} ->

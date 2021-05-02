@@ -54,6 +54,10 @@ defmodule Gardening.Plants do
     |> Repo.preload([:sunlight, :parent, :children])
   end
 
+  def get_plant_by_name(name) do
+    Repo.one(from p in Plant, where: p.name == ^name)
+  end
+
   @doc """
   Creates a plant.
 
